@@ -21,7 +21,7 @@ Avec le wait(null) le fork parent attends la fin de l'execution pour continuer d
 
 ## 3. Gestion de la sortie du shell avec la commande “exit” ou un <ctrl>+d
 <img width="836" height="176" alt="image" src="https://github.com/user-attachments/assets/481c78de-d2af-4ec4-b9ab-32fc20ca0f95" />\
-Nous detectons de la meme manière que "fortune" le exit, mais nous vérifions aussi avec un or (||) si c'est un message vide avec donc juste "\0".
+Nous detectons le "exit" de la meme manière que "fortune", mais nous vérifions aussi avec un or (||) si c'est un message vide avec juste "\0", ce qui correspond aussi à une sortie.
 
 ## 4."Affichage du code de retour (ou du signal) de la commande précédente dans le prompt :
 
