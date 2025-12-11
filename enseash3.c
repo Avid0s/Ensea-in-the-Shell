@@ -14,12 +14,8 @@ int main(void){
     int BUFSIZE = strlen(welcome); //On veut la taille de notre message pour utiliser write apres
     char *ciao = "Bye bye...\n";
 
-
-    
-
     write(1, welcome,BUFSIZE); // on utilise "STDOUT_FILENO" pour l'afficher directement dans le terminal
     
-
 	while (1) {
         write(STDOUT_FILENO, prompt, strlen(prompt));
         message_size= read(STDIN_FILENO,input, sizeof(input)-1);  // on utilise "STDIN_FILENO" pour lire l'entrée
@@ -38,13 +34,9 @@ int main(void){
             } else {
                     // parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
                     wait(NULL);
-                }
+            }
             
         }
-           
-       
-	
-	
 	
 	}												
 
