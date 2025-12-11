@@ -7,5 +7,5 @@ Rendus des exercices pour les TP de Programmation Système en deuxiemme année �
 
 
 Contributors : \
-Benjamin Zubaroglu\
-Gabriel Vidon
+BJNZ\
+Avid0s
