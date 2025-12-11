@@ -24,4 +24,4 @@ Avec le wait(null) le fork parent attends la fin de l'execution pour continuer d
 Nous detectons le "exit" de la meme manière que "fortune", mais nous vérifions aussi avec un or (||) si c'est un message vide avec juste "\0", ce qui correspond aussi à une sortie.
 
 ## 4."Affichage du code de retour (ou du signal) de la commande précédente dans le prompt :
-
+question non finie
