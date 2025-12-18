@@ -10,15 +10,12 @@
 int main(void){
 	char *welcome = "Bienvenue dans le Shell ENSEA.\nPour quitter, tapez 'exit'.\n";
 	char *prompt = "enseash % ";
-    int BUFSIZE = strlen(welcome); //On veut la taille de notre message pour utiliser write apres
 
-
-    write(STDOUT_FILENO, welcome,BUFSIZE); // on utilise "1" pour l'afficher directement dans le terminal
+    write(STDOUT_FILENO, welcome, strlen(welcome)); //On recupère la taille du message pour correctement l'afficher avec le write.
 
 	while (1) {
         write(STDOUT_FILENO, prompt, strlen(prompt));
-        while(1){   // ici, on met un while(1) pour bloquer et prendre une capture d'écran.
-
+        while(1){   // ici, on met un while(1) pour bloquer et prendre une capture d'écran. Il sera retiré dans les questions futures.
         }
 	}
 
