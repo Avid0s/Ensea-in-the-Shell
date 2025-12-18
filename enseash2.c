@@ -10,18 +10,17 @@ int main(void){
 	char *prompt = "enseash % ";
 	char input[128];
 	int message_size;
-    int BUFSIZE = strlen(welcome); //On veut la taille de notre message pour utiliser write apres
-    
-    write(1, welcome,BUFSIZE); // on utilise "STDOUT_FILENO" pour l'afficher directement dans le terminal
+
+    write(STDOUT_FILENO, welcome,strlen(welcome)); // on utilise "STDOUT_FILENO" pour l'afficher directement dans le terminal
 
 	while (1) {
         write(STDOUT_FILENO, prompt, strlen(prompt));
         message_size= read(STDIN_FILENO,input, sizeof(input)-1);  // on utilise "STDIN_FILENO" pour lire l'entrée
-        input[message_size] = '\0';  // pour definir la fin du message
+        input[message_size-1] = '\0';  							  // pour definir la fin du message et remplacer le \n
         
        
-        if (strcmp(input, "fortune\n\0") == 0) { // on fait une comparaison des mots du message en éntrée et 'exit', et on break si c'est exit.
-												 // on n'oublie pas le \n\0 car quand on appuie sur la touche 'entrée' cela fait \n									
+        if (strcmp(input, "fortune\0") == 0) { // on fait une comparaison des mots du message en éntrée et 'exit', et on break si c'est exit.
+											   // on n'oublie pas le \n\0 car quand on appuie sur la touche 'entrée' cela fait \n									
             pid_t pid = fork();
             if (pid == 0){
                         execlp("fortune", "fortune", NULL);
