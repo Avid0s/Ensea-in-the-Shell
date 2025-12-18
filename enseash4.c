@@ -47,9 +47,8 @@ int main(void){
             execvp(argv_exec[0], argv_exec);
                         
         } else {
-                    // parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
 			int status;
-            waitpid(pid, &status, 0);
+            waitpid(pid, &status, 0);// parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
             if (WIFEXITED(status)) {
             	last_exit = WEXITSTATUS(status);
             	last_signal = 0;

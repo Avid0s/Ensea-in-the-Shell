@@ -26,12 +26,10 @@ int main(void){
         if (pid == 0){
             execvp(argv_exec[0], argv_exec);
             } else {
-                    // parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
-                    wait(NULL);
-            }    
-        }   
-		
-	}		
-	
+            	// parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
+                wait(NULL);
+        }
+
+	}
 }
 
