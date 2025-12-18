@@ -27,62 +27,39 @@ int main(void){
     
 
 	while (1) {
-		
-		
 		if (last_signal != 0) {
-			
 			sprintf(prompt_buf, "enseash [sign:%d] %% ", last_signal);
-					/*char *prompt2 = "enseash [sign:";
-		            write(STDOUT_FILENO,"enseash [sign:", strlen(prompt2));					
-		            WriteNum()
-		            write(STDOUT_FILENO,"", strlen(prompt));*/
-
-		        } else {
-		        	sprintf(prompt_buf, "enseash [exit:%d] %% ", last_exit);
-		        	//write(STDOUT_FILENO,"enseash [exit:"last_exit"]  ", strlen(prompt));
-		        }
-		
-		
-		
-		
-		
-		
+		} else {
+		    sprintf(prompt_buf, "enseash [exit:%d] %% ", last_exit);
+		}
+	
 		write(STDOUT_FILENO, prompt_buf, strlen(prompt_buf));
 		
-       // write(STDOUT_FILENO, prompt, strlen(prompt));
         message_size= read(STDIN_FILENO,input, sizeof(input)-1);  // on utilise "STDIN_FILENO" pour lire l'entrée
         input[message_size-1] = '\0';  // pour definir la fin du message, et on enleve \n
         if ((strcmp(input ,"exit\0") ==0)  || ((strcmp(input ,"\0") ==0) )  ){ // on fait une comparaison des mots du message en éntrée et 'exit', et on break si c'est exit.
-        													// on n'oublie pas le /n/0 car quand on appuie sur la touche 'entrée' cela fait /n
-        													// le CTRL+D est équivalent à unmessage vide --> \0 donc on utilise cette comparaison
+        													// le CTRL+D est équivalent à unmessage vide --> \0 donc on utilise cette deuxiemme comparaison
         	write(STDOUT_FILENO, ciao, strlen(ciao));
         	break;
-	}
+		}
         
-            pid_t pid = fork();
-            if (pid == 0){
-            	execvp(argv_exec[0], argv_exec);
-                        //execlp("", "", NULL);
+        pid_t pid = fork();
+        if (pid == 0){
+            execvp(argv_exec[0], argv_exec);
                         
-            } else {
+        } else {
                     // parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
-            					int status;
-            	                waitpid(pid, &status, 0);
-            	                if (WIFEXITED(status)) {
-            	                    last_exit = WEXITSTATUS(status);
-            	                    last_signal = 0;
-            	                } else if (WIFSIGNALED(status)) {
-            	                    last_signal = WTERMSIG(status);
-            	                    last_exit = 0;
-                }
+			int status;
+            waitpid(pid, &status, 0);
+            if (WIFEXITED(status)) {
+            	last_exit = WEXITSTATUS(status);
+            	last_signal = 0;
+            } else if (WIFSIGNALED(status)) {
+            	last_signal = WTERMSIG(status);
+            	last_exit = 0;
             }
-            
-        
-           
-       
-	
-	
-	
+        }
+
 	}												
 
 }
