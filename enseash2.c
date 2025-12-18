@@ -21,12 +21,6 @@ int main(void){
         write(STDOUT_FILENO, prompt, strlen(prompt));
         message_size= read(STDIN_FILENO,input, sizeof(input)-1);  // on utilise "STDIN_FILENO" pour lire l'entrée
         input[message_size-1] = '\0';  // pour definir la fin du message, et on enleve \n
-		
-        if ((strcmp(input ,"exit\0") ==0)  || ((strcmp(input ,"\0") ==0) )  ){ // on fait une comparaison des mots du message en éntrée et 'exit', et on break si c'est exit.
-        													// le CTRL+D est équivalent à unmessage vide --> \0 donc on utilise cette deuxiemme comparaison
-        	write(STDOUT_FILENO, ciao, strlen(ciao));
-        	break;
-		}
         
         pid_t pid = fork();
         if (pid == 0){
