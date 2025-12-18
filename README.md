@@ -23,5 +23,7 @@ Avec le wait(null) le fork parent attends la fin de l'execution pour continuer d
 <img width="836" height="176" alt="image" src="https://github.com/user-attachments/assets/481c78de-d2af-4ec4-b9ab-32fc20ca0f95" />\
 Nous detectons le "exit" de la meme manière que "fortune", mais nous vérifions aussi avec un or (||) si c'est un message vide avec juste "\0", ce qui correspond aussi à une sortie.
 
-## 4."Affichage du code de retour (ou du signal) de la commande précédente dans le prompt :
-question non finie
+## 4.Affichage du code de retour (ou du signal) de la commande précédente dans le prompt :
+<img width="700" height="152" alt="image" src="https://github.com/user-attachments/assets/2de08c4b-b966-4a2d-b0ae-60e8c8a4b192" />
+Nous recuperons la valeur de signal ou exit renvoyée par la fonction, puis nous l'affichosn dans notre prompt avec la fonction *sprintf*
+
