@@ -1,5 +1,3 @@
-//test
-
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -11,7 +9,8 @@ int main(void){
 	char *welcome = "Bienvenue dans le Shell ENSEA.\nPour quitter, tapez 'exit'.\n";
 	char *prompt = "enseash % ";
 
-    write(STDOUT_FILENO, welcome, strlen(welcome)); //On recupère la taille du message pour correctement l'afficher avec le write.
+    write(STDOUT_FILENO, welcome, strlen(welcome)); //On utilise "STDOUT_FILENO" pour l'afficher directement dans le terminal
+													//On recupère la taille du message pour correctement l'afficher avec le write.
 
 	while (1) {
         write(STDOUT_FILENO, prompt, strlen(prompt));
