@@ -11,7 +11,6 @@ int main(void){
 	char *prompt = "enseash % ";
 	char input[128];
 	int message_size;
-    int BUFSIZE = strlen(welcome); //On veut la taille de notre message pour utiliser write apres
     char *ciao = "Bye bye...\n";
     int last_exit = 0;
     int last_signal = 0;
@@ -23,7 +22,7 @@ int main(void){
 
     
 
-    write(1, welcome,BUFSIZE); // on utilise "STDOUT_FILENO" pour l'afficher directement dans le terminal
+    write(STDOUT_FILENO, welcome,strlen(welcome)); // on utilise "STDOUT_FILENO" pour l'afficher directement dans le terminal
     
 
 	while (1) {
