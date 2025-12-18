@@ -15,6 +15,11 @@ int main(void){
     char *ciao = "Bye bye...\n";
     int last_exit = 0;
     int last_signal = 0;
+    char prompt_buf[128];
+
+    char *argv_exec[2];
+    argv_exec[0] = input;   // commande tapée
+    argv_exec[1] = NULL;    
 
     
 
@@ -25,11 +30,16 @@ int main(void){
 		
 		
 		if (last_signal != 0) {
-		            write(STDOUT_FILENO,"enseash [sign:", strlen(prompt));					// NON TERMINé, il manque à ecrire last signal apres sign:
-		            write(STDOUT_FILENO,"", strlen(prompt));
+			
+			sprintf(prompt_buf, "enseash [sign:%d] %% ", last_signal);
+					/*char *prompt2 = "enseash [sign:";
+		            write(STDOUT_FILENO,"enseash [sign:", strlen(prompt2));					
+		            WriteNum()
+		            write(STDOUT_FILENO,"", strlen(prompt));*/
 
 		        } else {
-		        	write(STDOUT_FILENO,"enseash [exit:"last_exit"]  ", strlen(prompt));
+		        	sprintf(prompt_buf, "enseash [exit:%d] %% ", last_exit);
+		        	//write(STDOUT_FILENO,"enseash [exit:"last_exit"]  ", strlen(prompt));
 		        }
 		
 		
@@ -37,21 +47,22 @@ int main(void){
 		
 		
 		
+		write(STDOUT_FILENO, prompt_buf, strlen(prompt_buf));
 		
-		
-        write(STDOUT_FILENO, prompt, strlen(prompt));
+       // write(STDOUT_FILENO, prompt, strlen(prompt));
         message_size= read(STDIN_FILENO,input, sizeof(input)-1);  // on utilise "STDIN_FILENO" pour lire l'entrée
-        input[message_size] = '\0';  // pour definir la fin du message
-        if ((strcmp(input ,"exit\n\0") ==0)  || ((strcmp(input ,"\0") ==0) )  ){ // on fait une comparaison des mots du message en éntrée et 'exit', et on break si c'est exit.
+        input[message_size-1] = '\0';  // pour definir la fin du message, et on enleve \n
+        if ((strcmp(input ,"exit\0") ==0)  || ((strcmp(input ,"\0") ==0) )  ){ // on fait une comparaison des mots du message en éntrée et 'exit', et on break si c'est exit.
         													// on n'oublie pas le /n/0 car quand on appuie sur la touche 'entrée' cela fait /n
         													// le CTRL+D est équivalent à unmessage vide --> \0 donc on utilise cette comparaison
         	write(STDOUT_FILENO, ciao, strlen(ciao));
         	break;
 	}
-        if (strcmp(input, "fortune\n\0") == 0) {
+        
             pid_t pid = fork();
             if (pid == 0){
-                        execlp("fortune", "fortune", NULL);
+            	execvp(argv_exec[0], argv_exec);
+                        //execlp("", "", NULL);
                         
             } else {
                     // parent attend la fin de l'enfant, car sinon on ne voit plus le prompt réapparaitre
@@ -66,7 +77,7 @@ int main(void){
                 }
             }
             
-        }
+        
            
        
 	
@@ -75,4 +86,3 @@ int main(void){
 	}												
 
 }
-
