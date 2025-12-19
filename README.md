@@ -39,9 +39,9 @@ Nous utilisons la fonction **gettime** avant et après l'execution de la command
 Nous prenons en compte maintenant jusqu'a 16 arguments. Nous parcourons le message de commande tant qu'il n'est pas nul, et separons les arguments differents en regardant les emplacements d'espaces dans le message. Puis nous les executons avec la meme partie de code que celle precedemment utilisée sur la Q2, maintenant modifiée pour utiliser la fonction **execvp** qui est faite pour l'execution de commandes avec arguments.
 
 ## 7. "Gestion des redirections vers stdin et stdout avec ‘<’ et ‘>’ :
-<img width="607" height="429" alt="image" src="https://github.com/user-attachments/assets/e1c652d7-0897-4afc-86fc-43f5025b43f6" />
+<img width="607" height="429" alt="image" src="https://github.com/user-attachments/assets/e1c652d7-0897-4afc-86fc-43f5025b43f6" />\
 De la meme manière que pour trouver les espaces entre arguments, nous cherchons les caractères ">" et "<" dans l'input. Sur un ">" le fichier est ouvert en WriteOnly, sur un "<" en ReadOnly, puis la commande avant le "<" ou ">" est executée, dans le cas du ">" ce qui est renvoyé dans la commande est ecrit dans le fichier, et le fichier est fermé
 
 ## 8. Gestion de la redirection de type pipe avec ‘|’ :
-<img width="969" height="121" alt="image" src="https://github.com/user-attachments/assets/62935ec4-b4dd-4784-b41f-cdfc17dd5cfc" />/
+<img width="969" height="121" alt="image" src="https://github.com/user-attachments/assets/62935ec4-b4dd-4784-b41f-cdfc17dd5cfc" />\
 Gestion des pipe permettant de chainer 2 commandes (comme ls |wc -l ). Le shell cree un pipe, redirige stdout de la 1ere commande vers stdin de la 2eme commande, et execute les 2 en parallele.
